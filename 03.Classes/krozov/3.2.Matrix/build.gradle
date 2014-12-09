@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+mainClassName = 'by.htp.krozov.homework.matrix.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    compile 'org.jetbrains:annotations:13.0'
+}
