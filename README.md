@@ -17,3 +17,5 @@ You must add new project by next path:
 2. Create new branch.<br>Branch name must be ``<AUTHOR>/<YOU_PROJECT_NAME>``.
 3. Push you project to your forked repository
 4. [Make pull request to this repository](https://help.github.com/articles/creating-a-pull-request/)
+
+Hot to work with git can be find [here](http://git-scm.com/book/ru/v1).
