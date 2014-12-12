@@ -6,20 +6,20 @@ import java.util.Random;
 public class studentsMethods {
     public static void main(String[] args) {
         Random rand = new Random();
-        int numberOfStudents = rand.nextInt(10) + 14;
+        int studentCount = rand.nextInt(10) + 14;
         int numberOfObjects = rand.nextInt(4) + 7;
 
-        int[][] table = new int[numberOfStudents][numberOfObjects];
+        int[][] table = new int[studentCount][numberOfObjects];
 
-        generationNum(table);
-        printNums(table);
-        mediumNum(table);
+        fillingRatings(table);
+        print(table);
+        averageScore(table);
     }
 
     /**
      * The method generates random scores from 1 to 10
      */
-    public static void generationNum(int[][] table) {
+    public static void fillingRatings(int[][] table) {
         Random r = new Random();
         for (int line = 0; line < table.length; line++) {
             for (int column = 0; column < table[line].length; column++) {
@@ -31,10 +31,11 @@ public class studentsMethods {
     /**
      * Method prints all estimates in a table
      */
-    public static void printNums(int[][] table) {
+    public static void print(int[][] table) {
         for (int lin = 0; lin < table.length; lin++) {
             for (int col = 0; col < table[lin].length; col++) {
-                System.out.print(table[lin][col] + "\t");
+                System.out.print(table[lin][col]);
+                System.out.print('\t');
             }
             System.out.println();
         }
@@ -43,7 +44,7 @@ public class studentsMethods {
     /**
      * The method calculates the average score for each student
      */
-    public static void mediumNum(int[][] table) {
+    public static void averageScore(int[][] table) {
         double medNum = 0;
         for (int lin2 = 0; lin2 < table.length; lin2++) {
             for (int col2 = 0; col2 < table[lin2].length; col2++) {
@@ -55,12 +56,3 @@ public class studentsMethods {
         }
     }
 }
-
-
-
-
-
-
-
-
-
