@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * Created by aangurets on 29.11.2014.
  */
-public class studentsMethods {
+public class StudentsMethods {
     public static void main(String[] args) {
         Random rand = new Random();
         int studentCount = rand.nextInt(10) + 14;
