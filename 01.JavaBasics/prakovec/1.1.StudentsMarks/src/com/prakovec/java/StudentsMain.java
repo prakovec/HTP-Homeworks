@@ -19,7 +19,7 @@ public class StudentsMain {
         }
 
         if (students < 15 || students > 25) {
-            System.out.print("The number of pupils entered incorrect!");
+            System.out.print("The number of pupils entered incorrect! ");
             System.exit(0);
         }
         System.out.println("Enter the number of courses from 8 to 12: ");
