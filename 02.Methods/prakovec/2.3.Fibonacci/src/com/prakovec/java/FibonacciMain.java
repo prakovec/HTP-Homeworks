@@ -35,9 +35,7 @@ public class FibonacciMain {
 
             if (number == 1) {
                 return 1;
-            } else {
-                return fibonacciRecursive(number - 1) + fibonacciRecursive(number - 2);
-            }
+            } else return fibonacciRecursive(number - 1) + fibonacciRecursive(number - 2);
         }
 
     }
@@ -49,20 +47,18 @@ public class FibonacciMain {
      */
     public static void fibonacciCalc(int number) {
 
-        long number0 = 0;
-        long number1 = 1;
+        long buffer = 0;
+        long num = 1;
 
-        System.out.print(number0 + " " + number1 + " ");
+        System.out.print(buffer + " " + num + " ");
 
-        long number2;
+        long nextNum;
 
         for (int i = 1; i < number; i++) {
-            number2 = number0 + number1;
-            System.out.print(number2 + " ");
-            number0 = number1;
-            number1 = number2;
+            nextNum = buffer + num;
+            System.out.print(nextNum + " ");
+            buffer = num;
+            num = nextNum;
         }
-
     }
-
 }

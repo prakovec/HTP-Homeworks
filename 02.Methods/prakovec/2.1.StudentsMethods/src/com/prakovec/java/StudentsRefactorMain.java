@@ -13,41 +13,41 @@ public class StudentsRefactorMain {
         courses = inputCourses();
 
         int[][] matrixMarks = new int[courses][students];
-        matrixGeneration(matrixMarks);
-        matrixOut(matrixMarks);
+        matrixInput(matrixMarks);
+        print(matrixMarks);
 
         int[][] transpositionMatrixMark = new int[matrixMarks[0].length][matrixMarks.length];
         transpositionMatrixMark = transpositionMatrix(matrixMarks);
 
         double[] averageRatingStudentsMatrix = new double[transpositionMatrixMark.length];
-        averageRatingStudentsMatrix = calcAverageRating(transpositionMatrixMark);
+        averageRatingStudentsMatrix = averageRating(transpositionMatrixMark);
         System.out.printf("%n Average students rating is: ");
-        matrixOut(averageRatingStudentsMatrix);
+        print(averageRatingStudentsMatrix);
 
         double[] averageRatingCoursesMatrix = new double[matrixMarks.length];
         System.out.printf("%n%n Average courses rating is: ");
-        averageRatingCoursesMatrix = calcAverageRating(matrixMarks);
-        matrixOut(averageRatingCoursesMatrix);
+        averageRatingCoursesMatrix = averageRating(matrixMarks);
+        print(averageRatingCoursesMatrix);
 
         double averageRatingClass;
-        averageRatingClass = calcAverageRatingClass(matrixMarks);
+        averageRatingClass = averageRatingClass(matrixMarks);
         System.out.printf("%n%n Average rating class is:  %3.2f  ", averageRatingClass);
 
         double minRating;
-        minRating = minRatingCalc(averageRatingStudentsMatrix);
+        minRating = minRating(averageRatingStudentsMatrix);
         System.out.printf("%n%n Minimum average rating class is:  %3.2f  ", minRating);
 
         double maxRating;
-        maxRating = maxRatingCalc(averageRatingStudentsMatrix);
+        maxRating = maxRating(averageRatingStudentsMatrix);
         System.out.printf("%n%n Maximum average rating class is:  %3.2f%n%n", maxRating);
     }
 
     /**
-     * This method generates a random array of estimates.
+     * This method input a random array of estimates.
      *
      * @param matrix the array to be filled with estimates.
      */
-    public static void matrixGeneration(int matrix[][]) {
+    public static void matrixInput(int matrix[][]) {
         Random rnd = new Random();
         for (int coursesNumber = 0; coursesNumber < matrix.length; coursesNumber++) {
             for (int studentsNumber = 0; studentsNumber < matrix[coursesNumber].length; studentsNumber++) {
@@ -61,7 +61,7 @@ public class StudentsRefactorMain {
      *
      * @param matrix array that is to be displayed.
      */
-    public static void matrixOut(int matrix[][]) {
+    public static void print(int matrix[][]) {
         for (int coursesNumber = 0; coursesNumber < matrix.length; coursesNumber++) {
             System.out.printf("Course %2d:", coursesNumber + 1);
             for (int studentsNumber = 0; studentsNumber < matrix[coursesNumber].length; studentsNumber++) {
@@ -76,7 +76,7 @@ public class StudentsRefactorMain {
      *
      * @param matrix array that is to be displayed.
      */
-    public static void matrixOut(double matrix[]) {
+    public static void print(double matrix[]) {
         for (int i = 0; i < matrix.length; i++) {
             System.out.printf("%3.2f  ", matrix[i]);
         }
@@ -91,10 +91,10 @@ public class StudentsRefactorMain {
     public static int[][] transpositionMatrix(int matrix[][]) {
 
         int[][] transpositionMatrix = new int[matrix[0].length][matrix.length];
-        for (int coursesNumber = 0; coursesNumber < matrix.length; coursesNumber++) {
-            for (int studentsNumber = 0; studentsNumber < matrix[coursesNumber].length; studentsNumber++) {
+        for (int cNum = 0; cNum < matrix.length; cNum++) {
+            for (int studentsNumber = 0; studentsNumber < matrix[cNum].length; studentsNumber++) {
 
-                transpositionMatrix[studentsNumber][coursesNumber] = matrix[coursesNumber][studentsNumber];
+                transpositionMatrix[studentsNumber][cNum] = matrix[cNum][studentsNumber];
             }
         }
 
@@ -107,7 +107,7 @@ public class StudentsRefactorMain {
      * @param matrix an array of assessments
      * @return array with the average scores
      */
-    public static double[] calcAverageRating(int matrix[][]) {
+    public static double[] averageRating(int matrix[][]) {
 
         double[] averageRatingMatrix = new double[matrix.length];
         for (int number = 0; number < matrix.length; number++) {
@@ -124,7 +124,7 @@ public class StudentsRefactorMain {
      * @param matrix ratings class array
      * @return average rating class
      */
-    public static double calcAverageRatingClass(int matrix[][]) {
+    public static double averageRatingClass(int matrix[][]) {
         double averageRatingClass = 0;
         for (int coursesNumber = 0; coursesNumber < matrix.length; coursesNumber++) {
             for (int studentsNumber = 0; studentsNumber < matrix[coursesNumber].length; studentsNumber++) {
@@ -140,7 +140,7 @@ public class StudentsRefactorMain {
      * @param matrix an array of medium ratings class
      * @return minimum average rating in the class
      */
-    public static double minRatingCalc(double matrix[]) {
+    public static double minRating(double matrix[]) {
         double minRating = matrix[1];
         for (int studentsNumber = 0; studentsNumber < matrix.length; studentsNumber++) {
             if (minRating > matrix[studentsNumber]) {
@@ -156,7 +156,7 @@ public class StudentsRefactorMain {
      * @param matrix an array of medium ratings class
      * @return maximum average rating in the class
      */
-    public static double maxRatingCalc(double matrix[]) {
+    public static double maxRating(double matrix[]) {
         double maxRating = matrix[1];
         for (int studentsNumber = 0; studentsNumber < matrix.length; studentsNumber++) {
             if (maxRating < matrix[studentsNumber]) {
