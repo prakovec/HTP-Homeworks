@@ -31,7 +31,7 @@ public class Package {
         this.weight = weight;
         receiptDate = new Date();
         status = Status.RECIVED;
-        this.id = FROM_WHERE + String.format("%04d", nextId++) + WHERE;
+        this.id = String.format("%s%04d%s", FROM_WHERE, nextId++, WHERE);
     }
 
     // Методы
@@ -109,7 +109,7 @@ public class Package {
                 "weight=" + weight +
                 ", handlingDate=" + handlingDate +
                 ", receiptDate=" + receiptDate +
-                ", status=" + status.getStatus() +
+                ", status=" + status +
                 '}' + "\n \n";
     }
 }

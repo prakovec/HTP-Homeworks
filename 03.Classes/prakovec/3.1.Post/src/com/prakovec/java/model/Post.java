@@ -11,7 +11,6 @@ import java.util.List;
 public class Post {
 
     private final List<Package> packages = new ArrayList<Package>();
-    private int numberPackage = 0;
 
 
     public Post() {
@@ -20,36 +19,33 @@ public class Post {
 
     public void addPackage(Package aPackage) {
         this.packages.add(aPackage);
-        numberPackage++;
     }
 
     public void addPackage(String senderName, String senderAddress, String recipientName, String recipientAddress, double weight) {
         this.packages.add(new Package(senderName, senderAddress, recipientName, recipientAddress, weight));
-        numberPackage++;
     }
 
     public int getNumberPackage() {
-        return numberPackage;
+        return packages.size();
     }
 
     /**
      * This method checks the package for errors
      *
-     * @param packages is current package
-     * @param index    is index of package
+     * @param aPackage is current package
      * @return check result
      */
-    public boolean checkPackage(List<Package> packages, int index) {
-        if (packages.getClass() == null || packages.isEmpty()) {
+    public boolean checkPackage(Package aPackage) {
+        if (aPackage == null) {
             return false;
-        } else if (packages.get(index).getSenderName() == "" || packages.get(index).getSenderAddress() == "" || packages.get(index).getRecipientName() == ""
-                || packages.get(index).getRecipientAddress() == "") {
-            packages.get(index).setStatus(Status.PROCESSED);
-            packages.get(index).setHandlingDate(new Date());
+        } else if (aPackage.getSenderName().isEmpty() || aPackage.getSenderAddress().isEmpty() ||
+                aPackage.getRecipientName().isEmpty() || aPackage.getRecipientAddress().isEmpty()) {
+            aPackage.setStatus(Status.PROCESSED);
+            aPackage.setHandlingDate(new Date());
             return false;
         } else {
-            packages.get(index).setStatus(Status.PROCESSED);
-            packages.get(index).setHandlingDate(new Date());
+            aPackage.setStatus(Status.PROCESSED);
+            aPackage.setHandlingDate(new Date());
             return true;
         }
 
@@ -60,26 +56,24 @@ public class Post {
     /**
      * This method sends the package to the recipient.
      *
-     * @param packages is current package
-     * @param index    is index of package
+     * @param aPackage is current package
      */
-    public void sentPackage(List<Package> packages, int index) {
+    public void sentPackage(Package aPackage) {
 
-        if (packages.get(index).getStatus() == Status.PROCESSED && checkPackage(packages, index)) {
-            packages.get(index).setStatus(Status.SENT);
+        if (aPackage.getStatus() == Status.PROCESSED && checkPackage(aPackage)) {
+            aPackage.setStatus(Status.SENT);
         }
     }
 
     /**
      * This method returns the package if it is not taken within a month, or it is not verified;
      *
-     * @param packages is current package
-     * @param index    is index of package
+     * @param aPackage is current package
      */
-    public void rejectPackage(List<Package> packages, int index) {
+    public void rejectPackage(Package aPackage) {
 
-        if (packages.get(index).getHandlingDate().getTime() >= packages.get(index).getHandlingDate().getTime() + 2629743000L || !checkPackage(packages, index)) {
-            packages.get(index).setStatus(Status.DECLINED);
+        if (aPackage.getHandlingDate().getTime() >= aPackage.getHandlingDate().getTime() + 2629743000L || !checkPackage(aPackage)) {
+            aPackage.setStatus(Status.DECLINED);
         }
     }
 
